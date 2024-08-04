@@ -124,7 +124,110 @@ public class Main {
 
   // Nomes de classes: Classes e objetos devem ter nomes com substantivos, como Customer, Account.
 
-  
-  
+  // Meu teclado atualmente esta sem acento entao algumas regras de portugues nao vao ser seguidas;
+
+  // Evitar nomes com senso de humor;
+
+  HolyHandGranade(); // -> O dono dessa funcao sabe o que ela representa, porem, mesmo sendo engracado, deixa o codigo com uma qualidade ruim.
+
+  DeleteItems(); -> // Esse seria o nome ideal para essa funcao que mostra que realmente a funcionalidade dela;
+
+  // Selecione uma palavra por contexto, o que isso quer dizer? Digamos que eu tenha uma requisicao de dados; E errado em por exemplo um controller usar fetch, outro get e outro retrive. Ou seja escolha uma palavra para a aplicacao inteira;
+
+  // Outro exemplo, usar a palavra controller, manager dentro da mesma funcao. Fica dificil de entender qual e cada coisa; 
+
+  // Porem mesmo respeitando todos esse conceito de palavra, e preciso usar isso semanticamente, a palavra add precisa ter sua aplicacao igual em todos os pontos do codigo, se eu der um nome add para algo que nao respeite isso, eu estarei quebrando a semantica que eu mesmo estabeleci. Um exemplo valido e, temos diversas classes o qual o metodo add cria um valor novo por meio da concatenacao de dois valores existentes;
+
+  // Agora criamos uma nova classe que adiciona valores ao fim de um array, pode parecer contra intuitivo nao usar add aqui, mas como criamos uma semantica para classes anteriores, deveriamos usar um nome como insert ou append;
+
+  // Preferir nomes tecnicos a nomes a partir do dominio do problema;
+
+  // Ex: 
+
+  // UserRepository, um programador sabe qual o uso do padrao entao logo e um nome aceitavel para ser nomeado;
+
+  // Nomes por si so nao costumam expressar contexto;
+
+  // As variaveis 
+
+  String firstName;
+  String lastName;
+  String street;
+  int houseNumber;
+
+  // Juntas podemos entender que seu contexto e de um endereco, mas se estivessem separadas nao entenderiamos, envolver elas numa classe ajudaria a entender o contexto;
+
+  class Address {
+    private String firstName;
+    private String lastName;
+    private String street;
+    private int houseNumber;
+  }
+
+  // A funcao a seguir nao deixa claro o contexto a partir do nome, deixando isso para o resto do codigo, o que tambem e errado:
+
+  private void printGuessStatistics(char candidate, int count) {
+    String number;
+    String verb;
+    String pluralModifier;
+
+    if(count == 0) {
+      number = "no";
+      verb = "are";
+      pluralModifier = "s";
+    } else if (count == 1) {
+      number = "1";
+      verb = "is";
+      pluralModifier = "";
+    } else {
+      number = Integer.toString(count);
+      verb = "are";
+      pluralModifier = "s";
+    }
+
+    String guessMessage = string.format("There %s% %s %s$%s", verb, number, candidate, pluralModifier); 
+  }
+
+  // Alem de ser extensa, suas variaveis sao muito utlizadas, precisei ler 3 vezes para entender o que fazia a funcao, o ideal nesse caso e implementar uma classe e tornar cada um dos ifs em uma funcao, e fazendo a verificacao por eles, ficaria muito mais legivel;
+
+  public class GuessStatisticsMessage {
+    private String number;
+    private String verb;
+    private String pluralModifier;
+
+    public String make(char candidate, int count){
+      createPluralDependentMessageParts(count);
+      return String.format(
+        "There %s %s %s%s", verb, number, candidate, pluralModifiere)
+    }
+
+    private void createPluralDependentMessageParts(int count) {
+      if(count == 0) {
+        thereAreNoLetters();
+      } else if(count == 1) {
+        thereIsNoLetters();
+      } else {
+        thereAreManyLetters(count);
+      }
+    }
+
+    private void thereAreManyLetters(int count) {
+      number = Integer.toString(count);
+      verb = "are";
+      pluralModifier = "s";
+    }
+
+    private void thereIsNoLetter(){
+      number = "1";
+      verb = "is";
+      pluralModifier = "";
+    }
+
+    private void thereAreNoLetters() {
+      number = "no";
+      verb = "are";
+      pluralModifier = "s";
+    }
+  }
 }
 
