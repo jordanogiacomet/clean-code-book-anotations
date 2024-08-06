@@ -106,5 +106,26 @@ public class Main {
 
     // O criterio e, se a funcao fizer sentido por si so entao a funcao mae fazia mais de uma coisa;
 
+    // A fim de confirmar se nossas funcoes fazem so uma coisa podemos avaliar o nivel de abstracao do codigo;
+
+    // A listagem 3.1, ou seja o primeiro codigo viola e muito a regra de estarem no mesmo nivel de abstracao;
+
+    // getHtml() -> Nivel alto de abstracao;
+    // Name = PathParser.render(pagePath); -> Nivel medio de abstracao
+    // .append -> Nivel baixo de abstracao;
+
+    // Uma funcao com diversos niveis de abstracoes gera confusao. 
+    // Os leitores nao conseguem entender se umaa expressao e um conceito essencial ou um detalhe.
+
+    // Uma funcao deve ser escrita em ordem decrescente, de cima para baixo, como uma ordem narrativa: Seguindo o maior e mesmo nivel de abstracao.
+    // Na lista de funcoes percorrendo uma abstracao menor a cada funcao.
+
+    // Queremos ler um programa como se fosse uma serie de paragrafos TO;
+
+      // Para incluir setups e teardows, incluimos o setup, depois o conteudo da pagina de testes e entao os teardowns;
+        // Para incluir os setups, adicionamos o suite setup, se este for uma colecao, incluimos o setup normal;
+          // Para incluir o suite setup, buscamos na hierarquia acima a pagina SuiteSetUp e adicionamos uma instrucao de inclusao a caminho aquela pagina. Para procurar a hierarquia acima...;
+    
+
   
 }
