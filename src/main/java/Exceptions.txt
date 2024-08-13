@@ -1,0 +1,35 @@
+// As funcoes devem fazer ou responder algo, mas nao ambos;
+
+public boolean set(String attribute, String value); -> Define um valor de um dado atributo e retorna true ou false se o atributo existir ou nao;
+
+if(set("username", "bob")) ... -> Nao conseguimos dizer o que esta acontecendo baseado na chamada da funcao;
+
+// Prefira execessoes a retorno de codigos de erro: 
+
+Fazer funcoes retornar codigos de erro e uma violacao de separacao comando-consulta -> usando um codigo de erro eu crio um problema para o chamador que deve tratar imediatamente o erro no codigo: 
+
+if(deletePage(page) == E_OK) {
+  if(registry.deleteReference(page.name) == E_OK) {
+    if(configKey.deleteKey(page.name.makeKey()) == E_OK) {
+      logger.log("Page deleted");
+    } else  {
+      logger.log("configKey not deleted");
+    }
+  } else {
+    logger.log("deleteReference not deleted")''
+  }
+} else {
+  logger.log("Failed delete");
+  return E_ERROR;
+}
+
+Essa estrutura nos forca a lidar com o erro no momento que estamos implementado e por consequencia criar estruturas alinhadas;
+A estrategia correta esta relacionada a fazer as funcoes separadamente e e capturar as exceptions
+
+try {
+  deletePage(page);
+  registry.deleteReference(page.name);
+  configKeys.deleteKey(page.name.makeKey());
+} catch (Exception e) {
+  logger.log(e.getMessage);
+}
