@@ -1,0 +1,20 @@
+GOTO era a paralizacao do fluxo de controle, um fluxo de controle e a sequencia de intrucoes que de um programa que sao executados;
+O GOTO podia jogar a pessoa para blocos de codigo muito distantes;
+
+Lembrar do result pattern para tratamento de erros ->
+
+async function fetchUserData: Promise<UserData> {
+  const [tokenErr, token] = await toResultAsync(fetchToken());
+
+  if(tokenErr) throw new Error('Error fetching token: ', ${token});
+
+  const [userDataErr, userData] = await toResultAsync(fetchUserData(token));
+
+  if(userDataErr) throw new Error('Error fetching userData: ', ${token});
+
+  return userData;
+}
+
+https://betterprogramming.pub/try-catch-considered-harmful-4238ddd7cd3c?gi=df584b6787f8
+
+Os try catchs -> ficam dentro das funcoes toResultAsync, a ideia e subir o erro o menos para cima possivel;
