@@ -1,0 +1,30 @@
+Os parametros sao interpretados como entradas de funcoes;
+A funcao appendFotter(s); -> Ela anexa s como um rodape ou anexa um rodape a s? s e uma entrada ou saida?
+
+Olhemos a assinatura da funcao: 
+
+public void appendFooter(StringBuffer report); O ato de termos que olhar a assinatura da funcao faz o codigo nao ser limpo;
+
+Logo se tivermos que mudar o estado de algo, faz mais sentido invocar o append footer como: 
+
+report.appendFooter -> usar o this da funcao, nao tem logica usar algo de fora!
+
+public class Report {
+    private StringBuffer content; // Criamos um content chamado report, e ele e o elemento que vamos modificar; O this veio como algo para ser os parametros de fora;
+
+    public Report(StringBuffer content) {
+        this.content = content;
+    }
+
+    public void appendFooter() { 
+        this.content.append("This is the footer");
+    }
+
+    public StringBuffer getContent() {
+        return this.content;
+    }
+
+// Logo, queremos dar o append? 
+Report report = new Report(new StringBuffer("Report content"));
+report.appendFooter();
+System.out.println(report.getContent());
